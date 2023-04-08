@@ -1,0 +1,7 @@
+.ql-container {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  max-width: 90%;
+  position: relative;
+}
