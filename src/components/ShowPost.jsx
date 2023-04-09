@@ -7,9 +7,11 @@ import { Avatar } from './Avatar'
 import { Link } from 'react-router-dom'
 import { AvatarSmall } from './AvatarSmall'
 import { Comment } from './Comment'
+import parse from 'html-react-parser'
 
-export const ShowPost = () => {
+export const ShowPost = ({ data }) => {
     const [showComment, setShowComment] = useState("hidden");
+    console.log(data)
     return (
         <div className='bg-white rounded p-5 my-5'>
             <div className="w-full flex items-start dark:text-white ">
@@ -22,12 +24,12 @@ export const ShowPost = () => {
                 </Link>
             </div>
             <div className='my-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda itaque quia aliquid? Tenetur fuga eius corporis aut.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda
+                {parse(data?.description)}
             </div>
             <div className='flex items-center justify-between border-b-2 border-gray-200 my-5 py-2'>
                 <div className='flex items-center'>
                     <img className='h-5 ' src={LikeIcon} />
-                    <span className='ml-2'>0 likes</span>
+                    <span className='ml-2'>{data?.likes?.length ? data?.likes?.length : 0} likes</span>
                 </div>
 
                 <div><span>20 comments</span></div>

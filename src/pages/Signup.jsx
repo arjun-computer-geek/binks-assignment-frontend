@@ -64,7 +64,7 @@ export const Signup = () => {
                         <input required={true} ref={passwordRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
                     </div>
                     <div className="flex items-center justify-between">
-                        <button disabled={loading} className="bg-blue-300 hover:hover:bg-blue-200 text-base font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button disabled={loading} className=" flex items-center bg-blue-300 hover:hover:bg-blue-200 text-base font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             {loading && <Spinner />}
                             Sign Up
                         </button>
