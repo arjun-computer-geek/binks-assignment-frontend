@@ -13,7 +13,7 @@ export const createPost = createAsyncThunk(
     const { description } = postData;
     try {
       const { data } = await axios.post("/api/v1/post/create", { description });
-      return data;
+      return data.post;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -43,7 +43,7 @@ export const postSlice = createSlice({
     builder.addCase(createPost.fulfilled, (state, action) => {
       toast.success("Post created successfully");
       state.loading = false;
-      state.posts = [...state.posts, action.payload];
+      state.posts = [action.payload, ...state.posts];
     });
     builder.addCase(createPost.rejected, (state, action) => {
       state.loading = false;

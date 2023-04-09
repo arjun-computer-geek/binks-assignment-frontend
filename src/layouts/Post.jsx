@@ -8,13 +8,15 @@ import { getAllPosts } from '../features/post/postSlice'
 export const Post = () => {
     const { posts, loading, error } = useSelector(state => state.post)
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllPosts())
+    }, [])
 
     useEffect(() => {
         if (error) {
             toast.error(error);
             dispatch(clearError())
         }
-        dispatch(getAllPosts())
     }, [error, dispatch])
 
     if (loading) return <FullScreenLoader />
