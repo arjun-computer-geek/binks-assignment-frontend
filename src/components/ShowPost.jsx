@@ -9,7 +9,6 @@ import AvatarSmall from './AvatarSmall'
 import Comment from './Comment'
 import parse from 'html-react-parser'
 import { useDispatch, useSelector } from 'react-redux'
-import { likeDislike } from '../features/post/postSlice'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -18,7 +17,6 @@ const ShowPost = ({ data }) => {
     const { user } = useSelector(state => state.auth)
     const [numOfLikes, setNumOfLikes] = useState(data?.likes?.length);
     const [comments, setComments] = useState([])
-    const dispatch = useDispatch();
     const [commentInput, setCommentInput] = useState("")
 
     useEffect(() => {
@@ -47,14 +45,15 @@ const ShowPost = ({ data }) => {
         setCommentInput('')
     }
 
-    const likeHandler = () => {
-        if (data.likes.includes(user?._id)) {
-            setNumOfLikes(prev => prev - 1)
+    const likeHandler = async () => {
+        try {
+            const res = await axios.get(`/api/v1/post/like/${data?._id}`);
+            toast.success(res.data.message);
+            setNumOfLikes(res.data.likes);
+        } catch (error) {
+            console(error.response.data.message);
+            toast.error(error.response.data.message)
         }
-        else {
-            setNumOfLikes(prev => prev + 1)
-        }
-        dispatch(likeDislike(data?._id))
     }
     return (
         <div className='bg-white rounded p-5 my-5'>

@@ -32,17 +32,6 @@ export const getAllPosts = createAsyncThunk(
   }
 );
 
-export const likeDislike = createAsyncThunk(
-  "post/likeDislike",
-  async (postId, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/api/v1/post/like/${postId}`);
-      return data.message;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data.message);
-    }
-  }
-);
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -70,9 +59,6 @@ export const postSlice = createSlice({
     builder.addCase(getAllPosts.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
-    });
-    builder.addCase(likeDislike.fulfilled, (state, action) => {
-      toast.success(action.payload);
     });
   },
 });

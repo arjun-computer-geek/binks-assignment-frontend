@@ -53,6 +53,7 @@ const NewPost = () => {
                 </button>
                 <button
                     onClick={postHandler}
+                    disabled={text.length === 0 || text === "<p><br></p>" || loading}
                     className="inline-flex items-center py-2.5 px-4 border-0 focus:outline-none bg-blue-300 hover:bg-blue-200 rounded text-base mt-4 md:mt-0"
                 >
                     Post
