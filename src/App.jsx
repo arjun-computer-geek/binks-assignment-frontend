@@ -5,6 +5,8 @@ import Signup from './pages/Signup'
 import Login from "./pages/Login";
 import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 function App() {
 
 
@@ -29,6 +31,8 @@ function App() {
       {/* protectedRoute */}
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Home />} index />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
     </Routes>
   </>

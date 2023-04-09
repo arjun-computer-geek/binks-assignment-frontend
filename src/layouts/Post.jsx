@@ -24,7 +24,7 @@ const Post = () => {
     if (loading) return <FullScreenLoader />
     return (
 
-        <div className='w-full col-span-4 p-8'>
+        <div className='w-full col-start-2 col-span-4 p-8'>
             <NewPost />
             {
                 posts?.map(data => <ShowPost key={data._id} data={data} />)
