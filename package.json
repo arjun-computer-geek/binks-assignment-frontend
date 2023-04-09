@@ -1,5 +1,6 @@
 {
   "name": "binks-assignment-frontend",
+  "proxy": "https://blinks-test.onrender.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",

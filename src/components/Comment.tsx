@@ -11,8 +11,8 @@ export const Comment = () => {
                 <AvatarSmall img={Profile} />
                 <Link to={`/profile`}>
                     <div className="flex m-2">
-                        <p className="font-semibold">Arjun</p>
-                        <p className="dark:text-slate-300 text-slate-600 ml-2">@ kumar</p>
+                        <p className="font-semibold text-gray-700">Arjun</p>
+                        <p className=" text-gray-600 ml-2">@ kumar</p>
                     </div>
                 </Link>
             </div>

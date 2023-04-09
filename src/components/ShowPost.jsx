@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from '../assets/profile-pic.png'
 import LikeIcon from '../assets/like.png'
 import CommentIcon from '../assets/comment.png'
@@ -11,15 +11,15 @@ import parse from 'html-react-parser'
 
 export const ShowPost = ({ data }) => {
     const [showComment, setShowComment] = useState("hidden");
-    console.log(data)
+    console.log(data, 'data')
     return (
         <div className='bg-white rounded p-5 my-5'>
             <div className="w-full flex items-start dark:text-white ">
                 <Avatar img={Profile} />
                 <Link to={`/profile`}>
                     <div className="flex m-2">
-                        <p className="font-semibold">Arjun</p>
-                        <p className="dark:text-slate-300 text-slate-600 ml-2">@ kumar</p>
+                        <p className="font-semibold text-gray-700">{data?.user?.name}</p>
+                        <p className=" text-gray-600 ml-2">@ {data?.user?.username}</p>
                     </div>
                 </Link>
             </div>
