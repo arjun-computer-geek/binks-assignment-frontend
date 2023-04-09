@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearError, login } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
-import { Spinner } from '../components'
+import Spinner from '../components/Spinner'
 
-export const Login = () => {
+const Login = () => {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
     const dispatch = useDispatch()
@@ -75,3 +75,4 @@ export const Login = () => {
         </div>
     )
 }
+export default Login

@@ -1,19 +1,19 @@
-import React, { useDebugValue, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from '../assets/profile-pic.png'
 import LikeIcon from '../assets/like.png'
 import CommentIcon from '../assets/comment.png'
 import SendIcon from '../assets/send.png'
-import { Avatar } from './Avatar'
+import Avatar from './Avatar'
 import { Link } from 'react-router-dom'
-import { AvatarSmall } from './AvatarSmall'
-import { Comment } from './Comment'
+import AvatarSmall from './AvatarSmall'
+import Comment from './Comment'
 import parse from 'html-react-parser'
 import { useDispatch, useSelector } from 'react-redux'
 import { likeDislike } from '../features/post/postSlice'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-export const ShowPost = ({ data }) => {
+const ShowPost = ({ data }) => {
     const [showComment, setShowComment] = useState("hidden");
     const { user } = useSelector(state => state.auth)
     const [numOfLikes, setNumOfLikes] = useState(data?.likes?.length);
@@ -44,6 +44,7 @@ export const ShowPost = ({ data }) => {
             console.log(error)
             toast.error("Something went wrong")
         }
+        setCommentInput('')
     }
 
     const likeHandler = () => {
@@ -99,6 +100,7 @@ export const ShowPost = ({ data }) => {
                 <div className='flex w-full'>
                     <AvatarSmall img={Profile} />
                     <input
+                        value={commentInput}
                         onChange={(e) => setCommentInput(e.target.value)}
                         placeholder="Add a comment..."
                         className="rounded pr-8 pl-4 ml-2 w-full dark:bg-slate-700 dark:border-slate-400 border border-text-slate-800 outline-none "
@@ -118,3 +120,4 @@ export const ShowPost = ({ data }) => {
         </div>
     )
 }
+export default ShowPost

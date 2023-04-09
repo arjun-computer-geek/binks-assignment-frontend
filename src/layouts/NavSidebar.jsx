@@ -1,7 +1,8 @@
 import React from 'react'
-import { Header, Sidebar } from '../components'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 
-export const NavSidebar = ({ children }) => {
+const NavSidebar = ({ children }) => {
     return (<div className=' grid overflow-hidden h-screen '>
         <Header />
         <div className="grid grid-cols-7">
@@ -13,3 +14,4 @@ export const NavSidebar = ({ children }) => {
     </div>
     )
 }
+export default NavSidebar

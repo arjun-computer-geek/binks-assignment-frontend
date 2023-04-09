@@ -4,11 +4,11 @@ import Sun from '../assets/sun.svg'
 import Moon from '../assets/moon.png'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Spinner } from "./Spinner";
 import { logout } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
+import Spinner from './Spinner'
 
-export const Header = () => {
+const Header = () => {
   const { loading, error } = useSelector(state => state.auth);
 
   useEffect(() => {
@@ -42,3 +42,4 @@ export const Header = () => {
     </header>
   );
 };
+export default Header

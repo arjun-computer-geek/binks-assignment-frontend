@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import Profile from '../assets/profile-pic.png'
-import { AvatarSmall } from './AvatarSmall'
 import { Link } from 'react-router-dom'
-
-export const Comment = ({ data }) => {
+import AvatarSmall from './AvatarSmall'
+const Comment = ({ data }) => {
     return (
         <div className='ml-14 m-2 p-5 rounded bg-gray-100'>
             <div className="w-full flex items-start dark:text-white ">
@@ -21,3 +20,4 @@ export const Comment = ({ data }) => {
         </div>
     )
 }
+export default Comment

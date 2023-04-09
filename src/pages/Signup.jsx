@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { clearError, signup } from '../features/auth/authSlice';
-import { Spinner } from '../components';
+import Spinner from '../components/Spinner';
 
-export const Signup = () => {
+const Signup = () => {
     const nameRef = useRef(null);
     const usernameRef = useRef(null);
     const emaiRef = useRef(null);
@@ -82,3 +82,4 @@ export const Signup = () => {
         </div>
     )
 }
+export default Signup

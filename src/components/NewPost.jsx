@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Avatar } from './Avatar'
+import Avatar from './Avatar'
 import Profile from '../assets/profile-pic.png'
 import ImgIcon from '../assets/img-icon.png'
 import ReactQuill from 'react-quill'
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import { clearError } from '../features/auth/authSlice'
 import { createPost } from '../features/post/postSlice'
 
-export const NewPost = () => {
+const NewPost = () => {
     const inputReference = useRef(null)
     const [text, setText] = useState("");
     const { loading, error } = useSelector(state => state.post)
@@ -61,3 +61,4 @@ export const NewPost = () => {
         </div>
     )
 }
+export default NewPost

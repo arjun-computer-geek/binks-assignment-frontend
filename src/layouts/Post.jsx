@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { FullScreenLoader, NewPost, ShowPost } from '../components'
+import FullScreenLoader from '../components/FullScreenLoader'
+import NewPost from '../components/NewPost'
+import ShowPost from '../components/ShowPost'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { clearError } from '../features/auth/authSlice'
 import { getAllPosts } from '../features/post/postSlice'
 
-export const Post = () => {
+const Post = () => {
     const { posts, loading, error } = useSelector(state => state.post)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -31,3 +33,4 @@ export const Post = () => {
 
     )
 }
+export default Post;
