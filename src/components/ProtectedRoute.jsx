@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router-dom"
+import { FullScreenLoader } from "./FullScreenLoader"
 
 export const ProtectedRoute = () => {
-    const { isAuthenticated } = useSelector(state => state.auth)
+    const { isAuthenticated, loading } = useSelector(state => state.auth)
+    if (loading) return <FullScreenLoader />
     if (!isAuthenticated) return <Navigate to='login' replace />
     return <Outlet />
 } 

@@ -15,16 +15,17 @@ function App() {
       newestOnTop
       closeOnClick
       rtl={false}
-      pauseOnFocusLoss
       draggable
       pauseOnHover
       theme="light"
     />
     {/* Same as */}
     <ToastContainer />
+
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      {/* protectedRoute */}
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Home />} index />
       </Route>

@@ -1,3 +1,5 @@
+export { Spinner } from "./Spinner";
+export { FullScreenLoader } from "./FullScreenLoader";
 export { ProtectedRoute } from "./ProtectedRoute";
 export { Comment } from "./Comment";
 export { AvatarSmall } from "./AvatarSmall";

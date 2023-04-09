@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+import { toast } from "react-toastify";
 
 const initialState = {
   loading: false,
@@ -31,6 +31,16 @@ export const loadUser = createAsyncThunk("auth/loaduser", async (thunkAPI) => {
     const { data } = await axios.get(url);
     return data.user;
   } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data.message);
+  }
+});
+
+export const logout = createAsyncThunk("auth/logout", async (thunkAPI) => {
+  try {
+    const res = await axios.get("/api/v1/logout");
+    return res;
+  } catch (error) {
+    console.log(erro);
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
@@ -73,6 +83,23 @@ export const authSlice = createSlice({
       state.loading = false;
       state.isAuthenticated = false;
       state.user = null;
+      state.error = action.payload;
+    });
+
+    builder.addCase(logout.pending, (state) => {
+      state.loading = true;
+      state.isAuthenticated = false;
+    });
+
+    builder.addCase(logout.fulfilled, (state) => {
+      toast.success("Logged out successfully");
+      state.loading = false;
+      state.isAuthenticated = false;
+      state.user = null;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
+      state.loading = false;
+      state.isAuthenticated = true;
       state.error = action.payload;
     });
   },
