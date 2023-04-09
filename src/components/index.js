@@ -1,3 +1,4 @@
+export { ProtectedRoute } from "./ProtectedRoute";
 export { Comment } from "./Comment";
 export { AvatarSmall } from "./AvatarSmall";
 export { ShowPost } from "./ShowPost";

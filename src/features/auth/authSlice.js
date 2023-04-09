@@ -29,10 +29,8 @@ export const loadUser = createAsyncThunk("auth/loaduser", async (thunkAPI) => {
   try {
     const url = `/api/v1/me`;
     const { data } = await axios.get(url);
-    console.log(data);
     return data.user;
   } catch (error) {
-    console.log(error, "err");
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { Home, Login, Signup } from "./pages"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
+import { ProtectedRoute } from "./components";
 
 function App() {
 
@@ -22,9 +23,11 @@ function App() {
     {/* Same as */}
     <ToastContainer />
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<Home />} index />
+      </Route>
     </Routes>
   </>
   )
