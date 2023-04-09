@@ -16,10 +16,10 @@ export const Header = () => {
           <button className="inline-flex items-center m-2 py-2.5 px-4 border-0 focus:outline-none bg-blue-300 hover:bg-blue-200 rounded text-base mt-4 md:mt-0">
             Logout
           </button>
-          <button className="inline-flex items-center m-2 border-0 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+          {/* <button className="inline-flex items-center m-2 border-0 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             <img className="h-10" src={Sun} />
             <img className="h-10" src={Moon} />
-          </button>
+          </button> */}
         </div>
       </div>
     </header>
