@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from '../assets/logo.svg'
 import Sun from '../assets/sun.svg'
 import Moon from '../assets/moon.png'
@@ -6,12 +6,19 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "./Spinner";
 import { logout } from "../features/auth/authSlice";
+import { toast } from "react-toastify";
 
 export const Header = () => {
-  const { loading } = useSelector(state => state.auth);
+  const { loading, error } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    }
+  }, [error])
+
   const dispatch = useDispatch();
   const logoutHandler = () => {
-    console.log("logout")
     dispatch(logout())
   }
   return (

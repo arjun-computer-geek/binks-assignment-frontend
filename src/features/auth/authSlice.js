@@ -17,7 +17,6 @@ export const login = createAsyncThunk(
       const { email, password } = userData;
 
       const res = await axios.post(url, { email, password });
-      console.log(res, "res");
       return res.data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -40,7 +39,6 @@ export const logout = createAsyncThunk("auth/logout", async (thunkAPI) => {
     const res = await axios.get("/api/v1/logout");
     return res;
   } catch (error) {
-    console.log(erro);
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
