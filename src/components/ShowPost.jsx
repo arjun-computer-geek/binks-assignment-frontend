@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useDebugValue, useEffect, useState } from 'react'
 import Profile from '../assets/profile-pic.png'
 import LikeIcon from '../assets/like.png'
 import CommentIcon from '../assets/comment.png'
@@ -8,10 +8,23 @@ import { Link } from 'react-router-dom'
 import { AvatarSmall } from './AvatarSmall'
 import { Comment } from './Comment'
 import parse from 'html-react-parser'
+import { useDispatch, useSelector } from 'react-redux'
+import { likeDislike } from '../features/post/postSlice'
 
 export const ShowPost = ({ data }) => {
     const [showComment, setShowComment] = useState("hidden");
-    console.log(data, 'data')
+    const { user } = useSelector(state => state.auth)
+    const [numOfLikes, setNumOfLikes] = useState(data?.likes?.length)
+    const dispatch = useDispatch()
+    const likeHandler = () => {
+        if (data.likes.includes(user?._id)) {
+            setNumOfLikes(prev => prev - 1)
+        }
+        else {
+            setNumOfLikes(prev => prev + 1)
+        }
+        dispatch(likeDislike(data?._id))
+    }
     return (
         <div className='bg-white rounded p-5 my-5'>
             <div className="w-full flex items-start dark:text-white ">
@@ -29,13 +42,14 @@ export const ShowPost = ({ data }) => {
             <div className='flex items-center justify-between border-b-2 border-gray-200 my-5 py-2'>
                 <div className='flex items-center'>
                     <img className='h-5 ' src={LikeIcon} />
-                    <span className='ml-2'>{data?.likes?.length ? data?.likes?.length : 0} likes</span>
+                    <span className='ml-2'>{numOfLikes} likes</span>
                 </div>
 
                 <div><span>20 comments</span></div>
             </div>
             <div className='flex items-center gap-2'>
                 <button
+                    onClick={likeHandler}
                     className="inline-flex items-center py-2.5 px-4 border-0 focus:outline-none bg-gray-300 hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
                 >
                     <img className='h-5' src={LikeIcon} />
