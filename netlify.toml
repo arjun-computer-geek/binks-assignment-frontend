@@ -1,4 +1,7 @@
 [[redirects]]
+  from="/api/*"
+  to="https://blinks-test.onrender.com/:splat"
+  status=200
   from = "/*"
   to = "/"
   status = 200
