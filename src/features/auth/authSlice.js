@@ -48,7 +48,6 @@ export const signup = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const { name, username, password, email } = userData;
-      console.log(userData);
       const { data } = await axios.post("/api/v1/register", {
         name,
         username,

@@ -3,21 +3,20 @@ import Profile from '../assets/profile-pic.png'
 import { AvatarSmall } from './AvatarSmall'
 import { Link } from 'react-router-dom'
 
-export const Comment = () => {
-
+export const Comment = ({ data }) => {
     return (
         <div className='ml-14 m-2 p-5 rounded bg-gray-100'>
             <div className="w-full flex items-start dark:text-white ">
                 <AvatarSmall img={Profile} />
                 <Link to={`/profile`}>
                     <div className="flex m-2">
-                        <p className="font-semibold text-gray-700">Arjun</p>
-                        <p className=" text-gray-600 ml-2">@ kumar</p>
+                        <p className="font-semibold text-gray-700">{data.user.name}</p>
+                        <p className=" text-gray-600 ml-2">@ {data.user.username}</p>
                     </div>
                 </Link>
             </div>
             <div className='my-2'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda itaque quia aliquid? Tenetur fuga eius corporis aut.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos et quis tenetur nisi natus. Error, placeat exercitationem? Sit, atque dicta totam assumenda
+                {data?.description}
             </div>
         </div>
     )

@@ -10,12 +10,42 @@ import { Comment } from './Comment'
 import parse from 'html-react-parser'
 import { useDispatch, useSelector } from 'react-redux'
 import { likeDislike } from '../features/post/postSlice'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const ShowPost = ({ data }) => {
     const [showComment, setShowComment] = useState("hidden");
     const { user } = useSelector(state => state.auth)
-    const [numOfLikes, setNumOfLikes] = useState(data?.likes?.length)
-    const dispatch = useDispatch()
+    const [numOfLikes, setNumOfLikes] = useState(data?.likes?.length);
+    const [comments, setComments] = useState([])
+    const dispatch = useDispatch();
+    const [commentInput, setCommentInput] = useState("")
+
+    useEffect(() => {
+        getComments()
+    }, [])
+    const getComments = async () => {
+        try {
+            const res = await axios.get(`/api/v1/comments/${data?._id}`)
+            setComments(res.data.comments)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const createComment = async () => {
+        try {
+            const res = await axios.post(`/api/v1/comment/${data?._id}`, { description: commentInput })
+            if (res.data.success) {
+                toast.success('Comment added successfully')
+                setComments(prev => [{ createdAt: Date.now(), description: commentInput, user: user }, ...prev])
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error("Something went wrong")
+        }
+    }
+
     const likeHandler = () => {
         if (data.likes.includes(user?._id)) {
             setNumOfLikes(prev => prev - 1)
@@ -45,7 +75,7 @@ export const ShowPost = ({ data }) => {
                     <span className='ml-2'>{numOfLikes} likes</span>
                 </div>
 
-                <div><span>20 comments</span></div>
+                <div><span>{comments.length} comments</span></div>
             </div>
             <div className='flex items-center gap-2'>
                 <button
@@ -69,18 +99,19 @@ export const ShowPost = ({ data }) => {
                 <div className='flex w-full'>
                     <AvatarSmall img={Profile} />
                     <input
+                        onChange={(e) => setCommentInput(e.target.value)}
                         placeholder="Add a comment..."
                         className="rounded pr-8 pl-4 ml-2 w-full dark:bg-slate-700 dark:border-slate-400 border border-text-slate-800 outline-none "
                         type="text"
                     />
                     <button
+                        onClick={createComment}
                         className="dark:disabled:text-slate-400 disabled:text-slate-700 text-blue-500 -ml-8"
                     >
                         <img className='h-5' src={SendIcon} />
                     </button>
                 </div>
-
-                <Comment />
+                {comments.map((comment, i) => <Comment key={i} data={comment} />)}
             </div>
 
 
