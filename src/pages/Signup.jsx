@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { clearError, signup } from '../features/auth/authSlice';
+import { Spinner } from '../components';
 
 export const Signup = () => {
+    const nameRef = useRef(null);
+    const usernameRef = useRef(null);
+    const emaiRef = useRef(null);
+    const passwordRef = useRef(null);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { loading, isAuthenticated, error } = useSelector(state => state.auth);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            toast.success('Welcome to the Binks Social')
+            navigate('/')
+        }
+        if (error) {
+            toast.error(error);
+            dispatch(clearError())
+        }
+    }, [dispatch, error, isAuthenticated])
+    const signupHandler = (e) => {
+        e.preventDefault();
+        dispatch(signup({ name: nameRef.current.value, email: emaiRef.current.value, password: passwordRef.current.value, username: usernameRef.current.value }))
+    }
     return (
         <div className="grid h-screen place-items-center overflow-y-auto">
             <div className='flex items-center justify-between gap-2'>
@@ -12,34 +38,34 @@ export const Signup = () => {
             </div>
 
             <div className="w-full max-w-xs">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={signupHandler}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                             Name
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name" />
+                        <input required={true} ref={nameRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name" />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                             Username
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                        <input required={true} ref={usernameRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
                     </div>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                             Email
                         </label>
-                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                        <input required={true} ref={emaiRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
                     </div>
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                             Password
                         </label>
-                        <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
-                        {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
+                        <input required={true} ref={passwordRef} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
                     </div>
                     <div className="flex items-center justify-between">
-                        <button className="bg-blue-300 hover:hover:bg-blue-200 text-base font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        <button disabled={loading} className="bg-blue-300 hover:hover:bg-blue-200 text-base font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            {loading && <Spinner />}
                             Sign Up
                         </button>
                     </div>
