@@ -37,3 +37,6 @@ This technology stack was chosen for its efficiency, performance, and ease of us
 * Open your web browser and navigate to  http://localhost:3000
 
 You should now be able to see and interact with the binks social app in your browser.
+
+## Note on Responsive Design
+Please note that due to time constraints, the current version of the application may not be fully responsive on all devices and screen sizes. The focus of the development has been on functionality and features. However, efforts have been made to ensure that the application is usable. 
