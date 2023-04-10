@@ -5,7 +5,7 @@ import AvatarSmall from './AvatarSmall'
 const Comment = ({ data }) => {
     return (
         <div className='ml-14 m-2 p-5 rounded bg-gray-100'>
-            <div className="w-full flex items-start dark:text-white ">
+            <div className="w-full flex items-start">
                 <AvatarSmall img={Profile} />
                 <Link to={`/profile`}>
                     <div className="flex m-2">

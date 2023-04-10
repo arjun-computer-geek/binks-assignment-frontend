@@ -33,7 +33,7 @@ const NewPost = () => {
     }
     return (
         <div className='bg-white rounded'>
-            <div className="w-full p-2 flex items-start dark:text-white">
+            <div className="w-full p-2 flex items-start">
                 <Avatar img={Profile} />
                 <div className='w-full m-2 border border-gray-200'>
                     <ReactQuill

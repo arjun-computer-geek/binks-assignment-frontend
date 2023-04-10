@@ -67,7 +67,7 @@ const ShowPost = ({ data, edit, postDeleteHandler, editPostHandler }) => {
 
     return (
         <div className='bg-white rounded p-5 my-5'>
-            <div className="w-full flex items-start dark:text-white ">
+            <div className="w-full flex items-start">
                 <Avatar img={Profile} />
                 <Link to={`/profile`}>
                     <div className="flex m-2">
@@ -131,12 +131,12 @@ const ShowPost = ({ data, edit, postDeleteHandler, editPostHandler }) => {
                         value={commentInput}
                         onChange={(e) => setCommentInput(e.target.value)}
                         placeholder="Add a comment..."
-                        className="rounded pr-8 pl-4 ml-2 w-full dark:bg-slate-700 dark:border-slate-400 border border-text-slate-800 outline-none "
+                        className="rounded pr-8 pl-4 ml-2 w-full border border-text-slate-800 outline-none "
                         type="text"
                     />
                     <button
                         onClick={createComment}
-                        className="dark:disabled:text-slate-400 disabled:text-slate-700 text-blue-500 -ml-8"
+                        className="disabled:text-slate-700 text-blue-500 -ml-8"
                     >
                         <img className='h-5' src={SendIcon} />
                     </button>
