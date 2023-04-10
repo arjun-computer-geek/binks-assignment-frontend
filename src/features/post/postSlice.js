@@ -10,10 +10,10 @@ const initialState = {
 export const createPost = createAsyncThunk(
   "post/create",
   async (postData, thunkAPI) => {
-    const { description } = postData;
+    const { description, user } = postData;
     try {
       const { data } = await axios.post("/api/v1/post/create", { description });
-      return data.post;
+      return { ...data.post, user: user };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

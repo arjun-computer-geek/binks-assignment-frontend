@@ -15,6 +15,7 @@ const NewPost = () => {
     const [text, setText] = useState("");
     const { loading, error } = useSelector(state => state.post)
     const dispatch = useDispatch();
+    const { user } = useSelector(state => state.auth)
 
     useEffect(() => {
         inputReference.current.focus();
@@ -28,7 +29,7 @@ const NewPost = () => {
     }, [error, dispatch])
 
     const postHandler = () => {
-        dispatch(createPost({ description: text }))
+        dispatch(createPost({ description: text, user: user }))
     }
     return (
         <div className='bg-white rounded'>

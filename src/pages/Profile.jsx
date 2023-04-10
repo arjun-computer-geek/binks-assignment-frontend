@@ -40,12 +40,12 @@ const Profile = () => {
                                 <p className="text-center text-slate-600">
                                     Email :  {user?.email}
                                 </p>
-                                <div className="w-[90%] rounded h-20 mt-4 flex justify-around  items-center">
+                                {/* <div className="w-[90%] rounded h-20 mt-4 flex justify-around  items-center">
                                     <div className="flex flex-col items-center">
                                         <p className="font-bold">0</p>
                                         <p>posts</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

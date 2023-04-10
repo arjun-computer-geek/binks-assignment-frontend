@@ -9,7 +9,6 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 function App() {
 
-
   return (<>
     <ToastContainer
       position="top-right"
