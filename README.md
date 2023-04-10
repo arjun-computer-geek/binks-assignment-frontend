@@ -27,12 +27,12 @@ This project utilizes the following technologies:
 * React Toastify: A library for displaying toast notifications in React applications, used for displaying feedback to users for actions such as creating, editing, and deleting posts.
 * React Quill: A rich text editor for React applications, used for allowing users to create and edit posts with formatted text.
 
-This technology stack was chosen for its efficiency, performance, and ease of use, allowing for the development of a modern and responsive social media app with a smooth user experience.
+This tech stack was chosen for its efficiency, performance, and ease of use, allowing for the development of a modern and responsive social media app with a smooth user experience.
 
 ## Steps to run locally
 * Clone the project repository to your local machine.
 * Navigate to the project directory using the command line.
-* nstall dependencies by running the following command: `yarn install`.
+* Install dependencies by running the following command: `yarn install`.
 * Start the development server by running the command: `npm run dev`. This will launch the app in development mode with hot module replacement (HMR) enabled.
 * Open your web browser and navigate to  http://localhost:3000
 
